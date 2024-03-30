@@ -49,43 +49,6 @@
           <input type="checkbox" id="magnesium" name="magnesium" />
         </div>
       </div>
-      <div class="section">
-        <h1>Website to Device</h1>
-        <!-- <p>
-          The value input below is sent to the database to control the number of
-          times the device LED blinks. The device reads the value for number of
-          blinks from the database every 15 seconds. This is an example of how
-          website inputs can control the device and can be replaced by the types
-          of supplements to dispense.
-        </p> -->
-        <div class="input-container">
-          <label for="flash-count">Number of LED Flashes:</label>
-          <input
-            type="number"
-            id="flash-count"
-            name="flash-count"
-            min="1"
-            max="10"
-          />
-          <button onclick="setLEDFlashes()">Set LED Flashes</button>
-        </div>
-      </div>
-      <div class="section">
-        <h1>Device to Website</h1>
-        <!-- <p>
-        The device is programmed to send a random float and integer to the
-        database every 15 seconds. Those values are automatically displayed
-        below. These values are just examples of the type of data we can send
-        from the device and can easily be replaced by sensor readings or other
-        information collected by the device.
-      </p> -->
-        <p class="database-values">
-          Random Integer from Device: <span id="reading-int"></span>
-        </p>
-        <p class="database-values">
-          Random Float from Device: <span id="reading-float"></span>
-        </p>
-      </div>
     </div>
   </body>
 </html>
