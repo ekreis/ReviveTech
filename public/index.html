@@ -5,24 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ReviveTech</title>
     <link rel="stylesheet" type="text/css" href="styles.css" />
-
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-    https://firebase.google.com/docs/web/setup#available-libraries -->
     <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
+    <!-- Javascript -->
     <script src="app.js"></script>
   </head>
   <body>
-    <header>
-      <img src="Logo.png" alt="Logo" class="logo" />
-      <!-- Replace with your logo image -->
-      <div class="header-buttons">
-        <button class="current-page"><a href="/index.html">Home</a></button>
-        <button><a href="/genetics.html">Genetics</a></button>
-        <button><a href="/profile.html">Profile</a></button>
-      </div>
+    <header class="header">
+      <nav class="navbar">
+        <img src="Logo.png" alt="Logo" class="logo" />
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="/index.html" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="/genetics.html" class="nav-link">Genetics</a>
+          </li>
+          <li class="nav-item">
+            <a href="/profile.html" class="nav-link">Profile</a>
+          </li>
+        </ul>
+        <div class="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </nav>
     </header>
     <div class="container">
       <div class="section">
