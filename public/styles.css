@@ -11,27 +11,16 @@
 html {
   font-size: 62.5%;
   font-family: "Roboto", sans-serif;
+  height: 100%; /* Ensure the html element takes up the full height */
+  background: linear-gradient(135deg, #b2b3ff, #94caff); /* Gradient background */
 }
 
-li {
-  list-style: none;
-}
-
-a {
-  text-decoration: none;
-}
-
-/* Styling */
 body {
   font-family: Arial, sans-serif;
-  background: linear-gradient(
-    135deg,
-    #b2b3ff,
-    #94caff
-  ); /* Gradient background */
   color: #000000; /* Black text */
   margin: 0;
   padding: 0;
+  height: 100%; /* Ensure the body element takes up the full height */
 }
 
 header {
@@ -65,6 +54,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  list-style: none; /* Add this line to remove bullets */
 }
 
 .nav-item {
@@ -76,6 +66,7 @@ header {
   font-weight: 400;
   text-transform: uppercase;
   color: #000000;
+  text-decoration: none; /* Add this line to remove underlines */
 }
 
 .nav-link:hover {
@@ -149,11 +140,11 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px;
-  margin: 20px;
+  padding: 10px;
+  margin: 10px;
   width: 50%;
   min-width: 400px;
-  border: 2px solid #d3d3d3; /* Dark border */
+  border: 1px solid #000000; /* Dark border */
   border-radius: 10px;
   background-color: #f4f4f4; /* Light background */
 }
@@ -202,4 +193,34 @@ span {
 .input-container input,
 .input-container button {
   margin: 0 5px; /* Adjust horizontal margin between items */
+}
+
+/* Dispense button styles */
+.dispense-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 200px; /* Adjust button width */
+  height: 200px; /* Adjust button height */
+  background-color: transparent; /* Set background color to transparent */
+  color: #000000; /* White text color */
+  font-size: 1.6rem; /* Adjust font size */
+  text-transform: uppercase;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  margin-bottom: 20px; /* Adjust margin to separate button from supplements */
+}
+
+.play-icon {
+  width: 80px; /* Adjust icon size */
+  height: 80px; /* Adjust icon size */
+  background-image: url('/play_icon.png'); /* Update URL to reference the image in the public folder */
+  background-size: cover;
+}
+
+/* Adjust spacing between icon and text */
+.dispense-btn span {
+  margin-bottom: 10px; /* Adjust margin to separate icon from text */
 }
