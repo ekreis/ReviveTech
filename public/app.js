@@ -13,15 +13,6 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 var database = firebase.database();
 
-// Function to set LED flashes
-function setLEDFlashes() {
-  var flashCount = parseInt(document.getElementById("flash-count").value); // Convert value to integer
-  var databaseTest = database.ref("test"); // Reference to test path
-  databaseTest.update({
-    flashCount: flashCount,
-  });
-}
-
 // Reference to recommendation path
 var recommendationRef = database.ref("user/recommendation");
 // Reference to dispense path
@@ -44,45 +35,38 @@ function addCheckboxListener(vitaminName) {
   });
 }
 
-// Function to display the integer and float values from the database
-function displayDatabaseValues() {
-  var readingInt = document.getElementById("reading-int");
-  var readingFloat = document.getElementById("reading-float");
+// Reference to the database paths containing the checkbox states
+var caffeineRef = database.ref("user/dispense/caffeine");
+var creatineRef = database.ref("user/dispense/creatine");
+var magnesiumRef = database.ref("user/dispense/magnesium");
+var vitaminB6Ref = database.ref("user/dispense/vitaminB6");
+var vitaminCRef = database.ref("user/dispense/vitaminC");
+var vitaminDRef = database.ref("user/dispense/vitaminD");
 
-  // Reference to the database paths containing the integer and float values
-  var intRef = database.ref("test/int");
-  var floatRef = database.ref("test/float");
+// Set the checkbox states based on the values retrieved from the database
+caffeineRef.on("value", function (snapshot) {
+  document.getElementById("caffeine").checked = snapshot.val();
+});
 
-  // Listen for changes in the integer value
-  intRef.on("value", function (snapshot) {
-    var intValue = snapshot.val();
-    readingInt.innerText = intValue;
-  });
+creatineRef.on("value", function (snapshot) {
+  document.getElementById("creatine").checked = snapshot.val();
+});
 
-  // Listen for changes in the float value
-  floatRef.on("value", function (snapshot) {
-    var floatValue = snapshot.val();
-    readingFloat.innerText = floatValue.toFixed(2); // Display float value with 2 decimal places
-  });
+magnesiumRef.on("value", function (snapshot) {
+  document.getElementById("magnesium").checked = snapshot.val();
+});
 
-  // Reference to the database paths containing the checkbox states
-  var vitaminCRef = database.ref("user/dispense/vitaminC");
-  var vitaminDRef = database.ref("user/dispense/vitaminD");
-  var magnesiumRef = database.ref("user/dispense/magnesium");
+vitaminB6Ref.on("value", function (snapshot) {
+  document.getElementById("vitaminB6").checked = snapshot.val();
+});
 
-  // Set the checkbox states based on the values retrieved from the database
-  vitaminCRef.on("value", function (snapshot) {
-    document.getElementById("vitaminC").checked = snapshot.val();
-  });
+vitaminCRef.on("value", function (snapshot) {
+  document.getElementById("vitaminC").checked = snapshot.val();
+});
 
-  vitaminDRef.on("value", function (snapshot) {
-    document.getElementById("vitaminD").checked = snapshot.val();
-  });
-
-  magnesiumRef.on("value", function (snapshot) {
-    document.getElementById("magnesium").checked = snapshot.val();
-  });
-}
+vitaminDRef.on("value", function (snapshot) {
+  document.getElementById("vitaminD").checked = snapshot.val();
+});
 
 // Call the function to display database values when the DOM content is loaded
 document.addEventListener("DOMContentLoaded", function () {
@@ -91,9 +75,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Attach event listeners to checkboxes
 document.addEventListener("DOMContentLoaded", function () {
+  addCheckboxListener("caffeine");
+  addCheckboxListener("creatine");
+  addCheckboxListener("magnesium");
+  addCheckboxListener("vitaminB6");
   addCheckboxListener("vitaminC");
   addCheckboxListener("vitaminD");
-  addCheckboxListener("magnesium");
 });
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -118,3 +105,33 @@ document.addEventListener("DOMContentLoaded", function () {
     navMenu.classList.remove("active");
   }
 });
+
+// // Function to set LED flashes
+// function setLEDFlashes() {
+//   var flashCount = parseInt(document.getElementById("flash-count").value); // Convert value to integer
+//   var databaseTest = database.ref("test"); // Reference to test path
+//   databaseTest.update({
+//     flashCount: flashCount,
+//   });
+// }
+
+// // Function to display the integer and float values from the database
+// function displayDatabaseValues() {
+//   var readingInt = document.getElementById("reading-int");
+//   var readingFloat = document.getElementById("reading-float");
+
+//   // Reference to the database paths containing the integer and float values
+//   var intRef = database.ref("test/int");
+//   var floatRef = database.ref("test/float");
+
+//   // Listen for changes in the integer value
+//   intRef.on("value", function (snapshot) {
+//     var intValue = snapshot.val();
+//     readingInt.innerText = intValue;
+//   });
+
+//   // Listen for changes in the float value
+//   floatRef.on("value", function (snapshot) {
+//     var floatValue = snapshot.val();
+//     readingFloat.innerText = floatValue.toFixed(2); // Display float value with 2 decimal places
+//   });

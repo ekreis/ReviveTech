@@ -145,6 +145,27 @@ header {
   background-color: #f4f4f4; /* Light background */
 }
 
+.supplement {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  margin: 20px;
+  width: 50%;
+  min-width: 400px;
+  border: 2px solid #d3d3d3; /* Dark border */
+  border-radius: 10px;
+  background-color: #f4f4f4; /* Light background */
+}
+
+.supplement label {
+  margin-right: auto; /* Push the label to the left edge */
+}
+
+.supplement input[type="checkbox"] {
+  margin-left: auto; /* Push the checkbox to the right edge */
+}
+
 .database-values {
   text-align: center;
 }
