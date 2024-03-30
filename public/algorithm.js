@@ -78,6 +78,28 @@ async function recommendSupplements() {
       },
     };
 
+    // Defining which goals match up to recommendations
+    const goalsRecommendations = {
+      endurance: {
+        true: "caffeine",
+      },
+      energy: {
+        true: "caffeine",
+      },
+      immunity: {
+        true: "vitaminC",
+      },
+      muscle: {
+        true: "creatine",
+      },
+      recovery: {
+        true: "magnesium",
+      },
+      weight: {
+        true: "vitaminB6",
+      },
+    };
+
     // Check if user's genetic data is available
     if (userGenetics && userGoals) {
       // Loop through each gene in the user's genetic data
@@ -97,6 +119,27 @@ async function recommendSupplements() {
           } else {
             console.log(
               `No specific recommendation for gene ${gene} with genotype ${genotype}.`
+            );
+          }
+        }
+      } 
+      // Loop through each goal in the user's goal data
+      for (const goal in userGoals) {
+        if (userGoals.hasOwnProperty(goal)) {
+          const goalStatus = userGoals[goal];
+
+          // Fetch the corresponding supplement recommendation for the goal
+          const recommendation = goalsRecommendations[goal][goalStatus];
+
+          // Update recommendation if it's not null
+          if (recommendation) {
+            updateRecommendation(recommendation);
+            console.log(
+              `Increased recommendation for ${recommendation} based on your goals.`
+            );
+          } else {
+            console.log(
+              `No specific recommendation for goal ${goal} with status ${goalStatus}.`
             );
           }
         }
