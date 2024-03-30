@@ -1,6 +1,6 @@
 // Initialize Firebase (same as in your HTML file)
 var firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
+  apiKey: "AIzaSyDpGzEUTmhS5mQCfGyW985R11lZMnYdMrI",
   authDomain: "revivetech-2024.firebaseapp.com",
   databaseURL: "https://revivetech-2024-default-rtdb.firebaseio.com",
   projectId: "revivetech-2024",
@@ -21,69 +21,48 @@ var dispenseRef = database.ref("user/dispense");
 // Function to update vitamin value in the database
 function updateVitamin(vitaminName) {
   var checkbox = document.getElementById(vitaminName); // Get the checkbox element
-  var vitaminValue = checkbox.checked; // Get the checkbox state
-  // Update the database with the checkbox state
-  dispenseRef.child(vitaminName).set(vitaminValue);
+  if (checkbox) {
+    var vitaminValue = checkbox.checked; // Get the checkbox state
+    // Update the database with the checkbox state
+    dispenseRef.child(vitaminName).set(vitaminValue);
+  }
 }
 
 // Listen for changes in the vitamin checkbox state and update the database accordingly
 function addCheckboxListener(vitaminName) {
   var checkbox = document.getElementById(vitaminName); // Get the checkbox element
-  // Listen for changes in the checkbox state
-  checkbox.addEventListener("change", function () {
-    updateVitamin(vitaminName); // Call updateVitamin function when the checkbox state changes
-  });
+  if (checkbox) {
+    // Listen for changes in the checkbox state
+    checkbox.addEventListener("change", function () {
+      updateVitamin(vitaminName); // Call updateVitamin function when the checkbox state changes
+    });
+  }
 }
 
-// Reference to the database paths containing the checkbox states
-var caffeineRef = database.ref("user/dispense/caffeine");
-var creatineRef = database.ref("user/dispense/creatine");
-var magnesiumRef = database.ref("user/dispense/magnesium");
-var vitaminB6Ref = database.ref("user/dispense/vitaminB6");
-var vitaminCRef = database.ref("user/dispense/vitaminC");
-var vitaminDRef = database.ref("user/dispense/vitaminD");
-
 // Set the checkbox states based on the values retrieved from the database
-caffeineRef.on("value", function (snapshot) {
-  document.getElementById("caffeine").checked = snapshot.val();
-});
+function setCheckboxState(vitaminName, snapshot) {
+  var checkbox = document.getElementById(vitaminName);
+  if (checkbox) {
+    checkbox.checked = snapshot.val();
+  }
+}
 
-creatineRef.on("value", function (snapshot) {
-  document.getElementById("creatine").checked = snapshot.val();
-});
+var vitamins = ["caffeine", "creatine", "magnesium", "vitaminB6", "vitaminC", "vitaminD"];
 
-magnesiumRef.on("value", function (snapshot) {
-  document.getElementById("magnesium").checked = snapshot.val();
-});
-
-vitaminB6Ref.on("value", function (snapshot) {
-  document.getElementById("vitaminB6").checked = snapshot.val();
-});
-
-vitaminCRef.on("value", function (snapshot) {
-  document.getElementById("vitaminC").checked = snapshot.val();
-});
-
-vitaminDRef.on("value", function (snapshot) {
-  document.getElementById("vitaminD").checked = snapshot.val();
+vitamins.forEach(function (vitaminName) {
+  var vitaminRef = database.ref("user/dispense/" + vitaminName);
+  vitaminRef.on("value", function (snapshot) {
+    setCheckboxState(vitaminName, snapshot);
+  });
 });
 
 // Call the function to display database values when the DOM content is loaded
 document.addEventListener("DOMContentLoaded", function () {
-  displayDatabaseValues();
-});
+  // Attach event listeners to checkboxes
+  vitamins.forEach(function (vitaminName) {
+    addCheckboxListener(vitaminName);
+  });
 
-// Attach event listeners to checkboxes
-document.addEventListener("DOMContentLoaded", function () {
-  addCheckboxListener("caffeine");
-  addCheckboxListener("creatine");
-  addCheckboxListener("magnesium");
-  addCheckboxListener("vitaminB6");
-  addCheckboxListener("vitaminC");
-  addCheckboxListener("vitaminD");
-});
-
-document.addEventListener("DOMContentLoaded", function () {
   // Hamburger menu
   const hamburger = document.querySelector(".hamburger");
   const navMenu = document.querySelector(".nav-menu");
