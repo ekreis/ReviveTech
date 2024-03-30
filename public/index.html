@@ -4,105 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ReviveTech</title>
-
-    <!-- Styles -->
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        background: linear-gradient(
-          135deg,
-          #b2b3ff,
-          #94caff
-        ); /* Gradient background */
-        color: #000000; /* Black text */
-        margin: 0;
-        padding: 0;
-      }
-
-      header {
-        background-color: #f4f4f4; /* White header background */
-        padding: 10px 20px; /* Adjust header padding */
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        border-bottom: 2px solid #d3d3d3; /* Dark border */
-      }
-
-      .logo {
-        width: 50px; /* Adjust logo width */
-      }
-
-      .header-buttons {
-        display: flex;
-        gap: 10px; /* Adjust gap between buttons */
-      }
-
-      .header-buttons button {
-        color: #000000; /* Black button text */
-        background-color: #f4f4f4;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 16px;
-      }
-
-      .container {
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 20px;
-      }
-
-      .section {
-        text-align: center;
-        border: 2px solid #d3d3d3; /* Dark border */
-        padding: 20px;
-        margin: 20px;
-        width: 50%;
-        border-radius: 10px;
-        background-color: #f4f4f4; /* Light background */
-      }
-
-      .database-values {
-        text-align: center;
-      }
-
-      h1 {
-        color: #000000; /* Black */
-        margin-bottom: 20px;
-        margin-top: 0px;
-      }
-
-      p {
-        color: #000000; /* Black */
-        margin-bottom: 10px;
-        text-align: left;
-      }
-
-      span {
-        font-weight: bold;
-        color: #000000; /* Black */
-      }
-
-      /* Add spacing between label, input, and button */
-      .input-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 10px; /* Adjust top margin */
-      }
-
-      .input-container label {
-        margin-right: 10px; /* Adjust right margin of label */
-      }
-
-      .input-container input,
-      .input-container button {
-        margin: 0 5px; /* Adjust horizontal margin between items */
-      }
-    </style>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
@@ -126,6 +28,7 @@
       // Initialize Firebase
       firebase.initializeApp(firebaseConfig);
       var database = firebase.database();
+
       // Function to set LED flashes
       function setLEDFlashes() {
         var flashCount = parseInt(document.getElementById("flash-count").value); // Convert value to integer
@@ -134,35 +37,121 @@
           flashCount: flashCount,
         });
       }
+
+      // Function to create the recommendation part of the database if it doesn't exist
+      function createRecommendationPath() {
+        var recommendationRef = database.ref("recommendation");
+        recommendationRef.once("value", function (snapshot) {
+          if (!snapshot.exists()) {
+            recommendationRef.set({
+              vitaminC: false,
+              vitaminD: false,
+              magnesium: false,
+            });
+          }
+        });
+      }
+
+      // Call the function to create recommendation path
+      createRecommendationPath();
+
+      // Reference to recommendation path
+      var recommendationRef = database.ref("recommendation");
+
+      // Function to update vitamin value in the database
+      function updateVitamin(vitaminName) {
+        var checkbox = document.getElementById(vitaminName); // Get the checkbox element
+        var vitaminValue = checkbox.checked; // Get the checkbox state
+        // Update the database with the checkbox state
+        recommendationRef.child(vitaminName).set(vitaminValue);
+      }
+
+      // Listen for changes in the vitamin checkbox state and update the database accordingly
+      function addCheckboxListener(vitaminName) {
+        var checkbox = document.getElementById(vitaminName); // Get the checkbox element
+        // Listen for changes in the checkbox state
+        checkbox.addEventListener("change", function () {
+          updateVitamin(vitaminName); // Call updateVitamin function when the checkbox state changes
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        addCheckboxListener("vitaminC");
+        addCheckboxListener("vitaminD");
+        addCheckboxListener("magnesium");
+      });
+
+      // Function to display the integer and float values from the database
+      function displayDatabaseValues() {
+        var readingInt = document.getElementById("reading-int");
+        var readingFloat = document.getElementById("reading-float");
+
+        // Reference to the database paths containing the integer and float values
+        var intRef = database.ref("test/int");
+        var floatRef = database.ref("test/float");
+
+        // Listen for changes in the integer value
+        intRef.on("value", function (snapshot) {
+          var intValue = snapshot.val();
+          readingInt.innerText = intValue;
+        });
+
+        // Listen for changes in the float value
+        floatRef.on("value", function (snapshot) {
+          var floatValue = snapshot.val();
+          readingFloat.innerText = floatValue.toFixed(2); // Display float value with 2 decimal places
+        });
+
+        // Reference to the database paths containing the checkbox states
+        var vitaminCRef = database.ref("recommendation/vitaminC");
+        var vitaminDRef = database.ref("recommendation/vitaminD");
+        var magnesiumRef = database.ref("recommendation/magnesium");
+
+        // Set the checkbox states based on the values retrieved from the database
+        vitaminCRef.on("value", function (snapshot) {
+          document.getElementById("vitaminC").checked = snapshot.val();
+        });
+
+        vitaminDRef.on("value", function (snapshot) {
+          document.getElementById("vitaminD").checked = snapshot.val();
+        });
+
+        magnesiumRef.on("value", function (snapshot) {
+          document.getElementById("magnesium").checked = snapshot.val();
+        });
+      }
+
+      // Call the function to display database values when the DOM content is loaded
+      document.addEventListener("DOMContentLoaded", function () {
+        displayDatabaseValues();
+      });
     </script>
-    <script src="app.js" defer></script>
   </head>
   <body>
     <header>
       <img src="Logo.png" alt="Logo" class="logo" />
       <!-- Replace with your logo image -->
       <div class="header-buttons">
-        <button>Home</button>
-        <button>Supplements</button>
-        <button>Profile</button>
+        <button class="current-page"><a href="/index.html">Home</a></button>
+        <button><a href="/genetics.html">Genetics</a></button>
+        <button><a href="/profile.html">Profile</a></button>
       </div>
     </header>
     <div class="container">
       <div class="section">
-        <h1>Device to Website</h1>
-        <!-- <p>
-          The device is programmed to send a random float and integer to the
-          database every 15 seconds. Those values are automatically displayed
-          below. These values are just examples of the type of data we can send
-          from the device and can easily be replaced by sensor readings or other
-          information collected by the device.
-        </p> -->
-        <p class="database-values">
-          Random Integer from Device: <span id="reading-int"></span>
-        </p>
-        <p class="database-values">
-          Random Float from Device: <span id="reading-float"></span>
-        </p>
+        <h1>Website to Device</h1>
+        <div class="input-container">
+          <label for="vitaminC">Vitamin C</label>
+          <input type="checkbox" id="vitaminC" name="vitaminC" />
+        </div>
+        <div class="input-container">
+          <label for="vitaminD">Vitamin D</label>
+          <input type="checkbox" id="vitaminD" name="vitaminD" />
+        </div>
+        <div class="input-container">
+          <label for="magnesium">Magnesium</label>
+          <input type="checkbox" id="magnesium" name="magnesium" />
+        </div>
       </div>
       <div class="section">
         <h1>Website to Device</h1>
@@ -184,6 +173,22 @@
           />
           <button onclick="setLEDFlashes()">Set LED Flashes</button>
         </div>
+      </div>
+      <div class="section">
+        <h1>Device to Website</h1>
+        <!-- <p>
+        The device is programmed to send a random float and integer to the
+        database every 15 seconds. Those values are automatically displayed
+        below. These values are just examples of the type of data we can send
+        from the device and can easily be replaced by sensor readings or other
+        information collected by the device.
+      </p> -->
+        <p class="database-values">
+          Random Integer from Device: <span id="reading-int"></span>
+        </p>
+        <p class="database-values">
+          Random Float from Device: <span id="reading-float"></span>
+        </p>
       </div>
     </div>
   </body>
