@@ -22,32 +22,17 @@ function setLEDFlashes() {
   });
 }
 
-// Function to create the recommendation part of the database if it doesn't exist
-function createRecommendationPath() {
-  var recommendationRef = database.ref("recommendation");
-  recommendationRef.once("value", function (snapshot) {
-    if (!snapshot.exists()) {
-      recommendationRef.set({
-        vitaminC: false,
-        vitaminD: false,
-        magnesium: false,
-      });
-    }
-  });
-}
-
-// Call the function to create recommendation path
-createRecommendationPath();
-
 // Reference to recommendation path
-var recommendationRef = database.ref("recommendation");
+var recommendationRef = database.ref("user/recommendation");
+// Reference to dispense path
+var dispenseRef = database.ref("user/dispense");
 
 // Function to update vitamin value in the database
 function updateVitamin(vitaminName) {
   var checkbox = document.getElementById(vitaminName); // Get the checkbox element
   var vitaminValue = checkbox.checked; // Get the checkbox state
   // Update the database with the checkbox state
-  recommendationRef.child(vitaminName).set(vitaminValue);
+  dispenseRef.child(vitaminName).set(vitaminValue);
 }
 
 // Listen for changes in the vitamin checkbox state and update the database accordingly
@@ -81,9 +66,9 @@ function displayDatabaseValues() {
   });
 
   // Reference to the database paths containing the checkbox states
-  var vitaminCRef = database.ref("recommendation/vitaminC");
-  var vitaminDRef = database.ref("recommendation/vitaminD");
-  var magnesiumRef = database.ref("recommendation/magnesium");
+  var vitaminCRef = database.ref("user/dispense/vitaminC");
+  var vitaminDRef = database.ref("user/dispense/vitaminD");
+  var magnesiumRef = database.ref("user/dispense/magnesium");
 
   // Set the checkbox states based on the values retrieved from the database
   vitaminCRef.on("value", function (snapshot) {
