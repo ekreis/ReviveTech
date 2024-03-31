@@ -132,32 +132,3 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-// // Function to set LED flashes
-// function setLEDFlashes() {
-//   var flashCount = parseInt(document.getElementById("flash-count").value); // Convert value to integer
-//   var databaseTest = database.ref("test"); // Reference to test path
-//   databaseTest.update({
-//     flashCount: flashCount,
-//   });
-// }
-
-// // Function to display the integer and float values from the database
-// function displayDatabaseValues() {
-//   var readingInt = document.getElementById("reading-int");
-//   var readingFloat = document.getElementById("reading-float");
-
-//   // Reference to the database paths containing the integer and float values
-//   var intRef = database.ref("test/int");
-//   var floatRef = database.ref("test/float");
-
-//   // Listen for changes in the integer value
-//   intRef.on("value", function (snapshot) {
-//     var intValue = snapshot.val();
-//     readingInt.innerText = intValue;
-//   });
-
-//   // Listen for changes in the float value
-//   floatRef.on("value", function (snapshot) {
-//     var floatValue = snapshot.val();
-//     readingFloat.innerText = floatValue.toFixed(2); // Display float value with 2 decimal places
-//   });
