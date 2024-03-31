@@ -235,6 +235,8 @@ span {
   border-radius: 50%; /* Make the border circular */
   overflow: hidden; /* Hide overflowing parts of the image */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow */
+  padding: 15px; /* Add padding to the image */
+  background-color: #f4f4f4;
 }
 
 /* Layer camera icon on top */
@@ -245,8 +247,10 @@ span {
   width: 40px; /* Adjust the width of the button */
   height: 40px; /* Adjust the height of the button */
   background-image: url("camera.png"); /* Set the image path */
-  background-size: contain;
-  background-color: #f4f4f4;
+  background-size: 70%; /* Adjust the size of the background image */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Prevent background image from repeating */
+  background-color: #f4f4f4; /* Set background color */
   border: 2px solid #d3d3d3; /* Icon already has a border */
   border-radius: 50%; /* Make the border circular */
   overflow: hidden; /* Hide overflowing parts of the button */
