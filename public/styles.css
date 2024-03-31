@@ -207,15 +207,10 @@ span {
   cursor: pointer;
 }
 
-/* Add this style to your styles.css file */
 .profile-photo {
   position: relative;
   width: 150px; /* Adjust the width as needed */
   height: 150px; /* Adjust the height as needed */
-  border: 2px solid #000000; /* Dark border */
-  border-radius: 50%; /* Make the border circular */
-  overflow: hidden; /* Hide overflowing parts of the image */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow */
 }
 
 /* Ensure profile image is always visible */
@@ -224,6 +219,26 @@ span {
   width: 100%; /* Make the image fill the width of its container */
   height: 100%; /* Make the image fill the height of its container */
   object-fit: cover; /* Maintain aspect ratio and cover entire container */
+  border: 2px solid #000000; /* Dark border */
+  border-radius: 50%; /* Make the border circular */
+  overflow: hidden; /* Hide overflowing parts of the image */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow */
+}
+
+/* Layer camera icon on top */
+.camera-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 40px; /* Adjust the width of the button */
+  height: 40px; /* Adjust the height of the button */
+  background-image: url("camera.png"); /* Set the image path */
+  background-size: cover;
+  background-color: #f4f4f4;
+  border: none; /* Icon already has a border */
+  border-radius: 50%; /* Make the border circular */
+  overflow: hidden; /* Hide overflowing parts of the button */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow */
 }
 
 @media only screen and (max-width: 768px) {
@@ -274,4 +289,3 @@ span {
     transform: translateY(-8px) rotate(-45deg);
   }
 }
-
