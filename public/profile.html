@@ -36,6 +36,11 @@
     </header>
 
     <h1>Profile Page</h1>
-    <!-- Add your content here -->
+    <div class="profile-photo">
+      <input type="file" id="profile-image" accept="image/*" style="display: none;" onchange="previewImage(event)">
+      <label for="profile-image">
+        <img src="default_profile.png" alt="Profile Image" id="preview-image">
+      </label>
+    </div>
   </body>
 </html>

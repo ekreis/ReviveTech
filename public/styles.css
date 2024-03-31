@@ -207,6 +207,24 @@ span {
   cursor: pointer;
 }
 
+/* Add this style to your styles.css file */
+.profile-photo {
+  position: relative;
+  width: 150px; /* Adjust the width as needed */
+  height: 150px; /* Adjust the height as needed */
+  border: 2px solid #000000; /* Dark border */
+  border-radius: 50%; /* Make the border circular */
+  overflow: hidden; /* Hide overflowing parts of the image */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow */
+}
+
+.profile-photo img {
+  width: 100%; /* Make the image fill the container */
+  height: 100%; /* Make the image fill the container */
+  object-fit: cover; /* Maintain aspect ratio and cover the container */
+  background-color: #ffffff;
+}
+
 @media only screen and (max-width: 768px) {
   .container {
     overflow-x: hidden;
@@ -255,3 +273,4 @@ span {
     transform: translateY(-8px) rotate(-45deg);
   }
 }
+
