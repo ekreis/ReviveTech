@@ -4,11 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Profile</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" href="styles.css" />
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
     <!-- Javascript -->
     <script src="app.js"></script>
   </head>
@@ -37,10 +38,7 @@
 
     <h1>Profile Page</h1>
     <div class="profile-photo">
-      <input type="file" id="profile-image" accept="image/*" style="display: none;" onchange="previewImage(event)">
-      <label for="profile-image">
-        <img src="default_profile.png" alt="Profile Image" id="preview-image">
-      </label>
+      <img src="" alt="Profile Image" id="profile-image" />
     </div>
   </body>
 </html>

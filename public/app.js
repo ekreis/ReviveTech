@@ -12,6 +12,7 @@ var firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 var database = firebase.database();
+var storage = firebase.storage(); // Initialize Firebase Storage
 
 // Reference to recommendation path
 var recommendationRef = database.ref("user/recommendation");
@@ -119,7 +120,7 @@ function resetValues() {
 
 document.addEventListener("DOMContentLoaded", function () {
   // Check if the current page is index.html
-  if (window.location.pathname === '/index.html') {
+  if (window.location.pathname === "/index.html") {
     var resetBtn = document.querySelector(".reset-btn");
     if (resetBtn) {
       resetBtn.addEventListener("click", function () {
@@ -131,4 +132,20 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
+// Assuming you have initialized Firebase and obtained a reference to your database
+document.addEventListener('DOMContentLoaded', function() {
+  // Get a reference to the database node containing the image URL
+  var imageRef = firebase.database().ref('/user/profile/photo');
 
+  // Get a reference to the img element
+  var imgElement = document.getElementById('profile-image');
+
+  // Attach a listener to the database reference to fetch the image URL
+  imageRef.on('value', function(snapshot) {
+      // Get the URL from the snapshot
+      var imageUrl = snapshot.val();
+
+      // Set the src attribute of the img element to the fetched URL
+      imgElement.src = imageUrl;
+  });
+});

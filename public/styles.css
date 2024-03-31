@@ -218,11 +218,12 @@ span {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow */
 }
 
+/* Ensure profile image is always visible */
 .profile-photo img {
-  width: 100%; /* Make the image fill the container */
-  height: 100%; /* Make the image fill the container */
-  object-fit: cover; /* Maintain aspect ratio and cover the container */
-  background-color: #ffffff;
+  display: block; /* Ensure the image is displayed as a block element */
+  width: 100%; /* Make the image fill the width of its container */
+  height: 100%; /* Make the image fill the height of its container */
+  object-fit: cover; /* Maintain aspect ratio and cover entire container */
 }
 
 @media only screen and (max-width: 768px) {
