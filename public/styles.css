@@ -68,14 +68,7 @@ header {
   justify-content: space-between;
   align-items: center;
   list-style: none; /* Add this line to remove bullets */
-  position: absolute; /* Add this line */
-  top: 100%; /* Add this line */
-  left: 0; /* Add this line */
-  width: 100%; /* Add this line */
   background-color: #f4f4f4; /* Add this line */
-  padding: 1rem 0; /* Add this line */
-  flex-direction: column; /* Add this line */
-  z-index: 0; /* Add this line */
 }
 
 .nav-item {
