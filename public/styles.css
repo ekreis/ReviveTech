@@ -66,7 +66,7 @@ header {
 }
 
 .nav-link {
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   font-weight: 400;
   text-transform: uppercase;
   color: #000000;
@@ -166,15 +166,14 @@ span {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 200px; /* Adjust button width */
-  height: 200px; /* Adjust button height */
   background-color: transparent; /* Set background color to transparent */
   color: #000000; /* Black text color */
-  font-size: 1.6rem; /* Adjust font size */
+  font-size: 1.2rem; /* Adjust font size */
   text-transform: uppercase;
   border: none;
   outline: none;
   cursor: pointer;
+  margin: 10px 0px;
 }
 
 .play-icon {
@@ -190,6 +189,15 @@ span {
 /* Adjust spacing between icon and text */
 .dispense-btn span {
   margin-bottom: 10px; /* Adjust margin to separate icon from text */
+}
+
+.reset-btn {
+  text-decoration: underline; /* Add underline to the text */
+  text-transform: uppercase;
+  background-color: transparent;
+  border: none;
+  color: #000000;
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 768px) {

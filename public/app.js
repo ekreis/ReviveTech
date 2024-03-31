@@ -23,7 +23,12 @@ function updateSupplement(supplementName) {
   var inputField = document.getElementById(supplementName); // Get the input field element
   if (inputField) {
     var supplementValue = parseInt(inputField.value) || 0; // Get the integer value from the input field
-    console.log("Updating supplement", supplementName, "with value", supplementValue);
+    console.log(
+      "Updating supplement",
+      supplementName,
+      "with value",
+      supplementValue
+    );
     // Update the database with the integer value
     dispenseRef.child(supplementName).set(supplementValue);
   }
@@ -49,7 +54,14 @@ function setInitialCounts(supplementName, snapshot) {
   }
 }
 
-var supplements = ["caffeine", "creatine", "magnesium", "vitaminB6", "vitaminC", "vitaminD"];
+var supplements = [
+  "caffeine",
+  "creatine",
+  "magnesium",
+  "vitaminB6",
+  "vitaminC",
+  "vitaminD",
+];
 
 supplements.forEach(function (supplementName) {
   var supplementRef = database.ref("user/dispense/" + supplementName);
@@ -84,6 +96,36 @@ document.addEventListener("DOMContentLoaded", function () {
   function closeMenu() {
     hamburger.classList.remove("active");
     navMenu.classList.remove("active");
+  }
+});
+
+// Reset function
+function resetValues() {
+  // Get the recommendation data
+  recommendationRef.once("value", function (snapshot) {
+    var recommendationData = snapshot.val();
+
+    // Set the dispense data equal to recommendation data
+    dispenseRef
+      .set(recommendationData)
+      .then(() => {
+        console.log("Reset successful");
+      })
+      .catch((error) => {
+        console.error("Error resetting values:", error);
+      });
+  });
+}
+
+// Call the resetValues function when the reset button is clicked
+document.addEventListener("DOMContentLoaded", function () {
+  var resetBtn = document.querySelector(".reset-btn");
+  if (resetBtn) {
+    resetBtn.addEventListener("click", function () {
+      resetValues();
+    });
+  } else {
+    console.error("Reset button not found in the DOM.");
   }
 });
 
