@@ -20,30 +20,32 @@ var dispenseRef = database.ref("user/dispense");
 
 // Function to update vitamin value in the database
 function updateVitamin(vitaminName) {
-  var checkbox = document.getElementById(vitaminName); // Get the checkbox element
-  if (checkbox) {
-    var vitaminValue = checkbox.checked; // Get the checkbox state
-    // Update the database with the checkbox state
+  var inputField = document.getElementById(vitaminName); // Get the input field element
+  if (inputField) {
+    var vitaminValue = parseInt(inputField.value) || 0; // Get the integer value from the input field
+    console.log("Updating vitamin", vitaminName, "with value", vitaminValue);
+    // Update the database with the integer value
     dispenseRef.child(vitaminName).set(vitaminValue);
   }
 }
 
-// Listen for changes in the vitamin checkbox state and update the database accordingly
-function addCheckboxListener(vitaminName) {
-  var checkbox = document.getElementById(vitaminName); // Get the checkbox element
-  if (checkbox) {
-    // Listen for changes in the checkbox state
-    checkbox.addEventListener("change", function () {
-      updateVitamin(vitaminName); // Call updateVitamin function when the checkbox state changes
+// Listen for changes in the vitamin input field and update the database accordingly
+function addCountInputListener(vitaminName) {
+  var inputField = document.getElementById(vitaminName); // Get the input field element
+  if (inputField) {
+    // Listen for changes in the input field value
+    inputField.addEventListener("input", function () {
+      console.log("Input field changed for", vitaminName);
+      updateVitamin(vitaminName); // Call updateVitamin function when the input field value changes
     });
   }
 }
 
-// Set the checkbox states based on the values retrieved from the database
-function setCheckboxState(vitaminName, snapshot) {
-  var checkbox = document.getElementById(vitaminName);
-  if (checkbox) {
-    checkbox.checked = snapshot.val();
+// Set the input field values based on the values retrieved from the database
+function setInitialCounts(vitaminName, snapshot) {
+  var inputField = document.getElementById(vitaminName);
+  if (inputField) {
+    inputField.value = snapshot.val() || 0;
   }
 }
 
@@ -52,15 +54,15 @@ var vitamins = ["caffeine", "creatine", "magnesium", "vitaminB6", "vitaminC", "v
 vitamins.forEach(function (vitaminName) {
   var vitaminRef = database.ref("user/dispense/" + vitaminName);
   vitaminRef.on("value", function (snapshot) {
-    setCheckboxState(vitaminName, snapshot);
+    setInitialCounts(vitaminName, snapshot);
   });
 });
 
 // Call the function to display database values when the DOM content is loaded
 document.addEventListener("DOMContentLoaded", function () {
-  // Attach event listeners to checkboxes
+  // Attach event listeners to input fields
   vitamins.forEach(function (vitaminName) {
-    addCheckboxListener(vitaminName);
+    addCountInputListener(vitaminName);
   });
 
   // Hamburger menu
