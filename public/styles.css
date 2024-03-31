@@ -9,10 +9,14 @@
 }
 
 html {
-  font-size: 62.5%;
+  font-size: 80%;
   font-family: "Roboto", sans-serif;
   height: 100%; /* Ensure the html element takes up the full height */
-  background: linear-gradient(135deg, #b2b3ff, #94caff); /* Gradient background */
+  background: linear-gradient(
+    135deg,
+    #b2b3ff,
+    #94caff
+  ); /* Gradient background */
 }
 
 body {
@@ -77,46 +81,6 @@ header {
   height: 4rem; /* Adjust logo width */
 }
 
-@media only screen and (max-width: 768px) {
-  .nav-menu {
-    position: fixed;
-    left: -100%;
-    top: 6rem;
-    flex-direction: column;
-    background-color: #f4f4f4;
-    width: 100%;
-    text-align: center;
-    transition: 0.3s;
-    box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
-    border-bottom: 2px solid #d3d3d3; /* Dark border */
-  }
-
-  .nav-menu.active {
-    left: 0;
-  }
-
-  .nav-item {
-    margin: 2.5rem 0;
-  }
-
-  .hamburger {
-    display: block;
-    cursor: pointer;
-  }
-
-  .hamburger.active .bar:nth-child(2) {
-    opacity: 0;
-  }
-
-  .hamburger.active .bar:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
-  }
-
-  .hamburger.active .bar:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
-  }
-}
-
 .container {
   text-align: center;
   display: flex;
@@ -143,10 +107,11 @@ header {
   padding: 10px;
   margin: 10px;
   width: 50%;
-  min-width: 400px;
+  max-width: 400px;
   border: 1px solid #000000; /* Dark border */
   border-radius: 10px;
   background-color: #f4f4f4; /* Light background */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow */
 }
 
 .supplement label {
@@ -204,23 +169,74 @@ span {
   width: 200px; /* Adjust button width */
   height: 200px; /* Adjust button height */
   background-color: transparent; /* Set background color to transparent */
-  color: #000000; /* White text color */
+  color: #000000; /* Black text color */
   font-size: 1.6rem; /* Adjust font size */
   text-transform: uppercase;
   border: none;
   outline: none;
   cursor: pointer;
-  margin-bottom: 20px; /* Adjust margin to separate button from supplements */
 }
 
 .play-icon {
   width: 80px; /* Adjust icon size */
   height: 80px; /* Adjust icon size */
-  background-image: url('/play_icon.png'); /* Update URL to reference the image in the public folder */
+  background-image: url("/play_icon.png"); /* Update URL to reference the image in the public folder */
   background-size: cover;
+  border: 1px solid #000000; /* Specify border style and color */
+  border-radius: 50%; /* Make the border circular */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow */
 }
 
 /* Adjust spacing between icon and text */
 .dispense-btn span {
   margin-bottom: 10px; /* Adjust margin to separate icon from text */
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    overflow-x: hidden;
+    white-space: nowrap; /* Prevent wrapping of supplements */
+  }
+
+  .supplement {
+    width: 95%; /* Adjust width for smaller screens */
+  }
+
+  .nav-menu {
+    position: fixed;
+    left: -100%;
+    top: 6rem;
+    flex-direction: column;
+    background-color: #f4f4f4;
+    width: 100%;
+    text-align: center;
+    transition: 0.3s;
+    box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+    border-bottom: 2px solid #d3d3d3; /* Dark border */
+  }
+
+  .nav-menu.active {
+    left: 0;
+  }
+
+  .nav-item {
+    margin: 2.5rem 0;
+  }
+
+  .hamburger {
+    display: block;
+    cursor: pointer;
+  }
+
+  .hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .hamburger.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
 }
