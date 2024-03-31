@@ -117,17 +117,20 @@ function resetValues() {
   });
 }
 
-// Call the resetValues function when the reset button is clicked
 document.addEventListener("DOMContentLoaded", function () {
-  var resetBtn = document.querySelector(".reset-btn");
-  if (resetBtn) {
-    resetBtn.addEventListener("click", function () {
-      resetValues();
-    });
-  } else {
-    console.error("Reset button not found in the DOM.");
+  // Check if the current page is index.html
+  if (window.location.pathname === '/index.html') {
+    var resetBtn = document.querySelector(".reset-btn");
+    if (resetBtn) {
+      resetBtn.addEventListener("click", function () {
+        resetValues();
+      });
+    } else {
+      console.error("Reset button not found in the DOM.");
+    }
   }
 });
+
 
 // // Function to set LED flashes
 // function setLEDFlashes() {
