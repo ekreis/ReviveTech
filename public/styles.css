@@ -11,7 +11,13 @@
 html {
   font-size: 80%;
   font-family: "Roboto", sans-serif;
-  height: 100%; /* Ensure the html element takes up the full height */
+  color: #000000; /* Black text */
+  min-height: 100%; /* Ensure the html element takes up the full height */
+}
+
+body {
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
   background: linear-gradient(
     135deg,
     #b2b3ff,
@@ -19,12 +25,13 @@ html {
   ); /* Gradient background */
 }
 
-body {
-  font-family: Arial, sans-serif;
-  color: #000000; /* Black text */
-  margin: 0;
-  padding: 0;
-  height: 100%; /* Ensure the body element takes up the full height */
+.background-container {
+  min-height: 100vh; /* Ensure container covers at least the viewport height */
+  background: linear-gradient(
+    135deg,
+    #b2b3ff,
+    #94caff
+  ); /* Gradient background */
 }
 
 header {
