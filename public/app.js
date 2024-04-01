@@ -320,3 +320,104 @@ document.addEventListener("DOMContentLoaded", function () {
     addGoalCheckboxListener(goalName);
   });
 });
+
+// Function to recommend supplement based on gene and allele
+function recommendSupplement(gene, allele) {
+  // Define the allele-to-supplement mappings with descriptions
+  const supplementMappings = {
+    SLC23A2: {
+      AA: {
+        supplement: "Vitamin C",
+        description:
+          "The ACTN3 Gene is associated with slow twitch muscle fiber type. Individuals with the AA allele with have more muscle strength than those with CT/CC. However it is still recommended for  individuals to have increased levels of carbohydrate intake.",
+      },
+      AG: { supplement: "Vitamin C", description: "Description for AG allele" },
+      GG: { supplement: "Vitamin C", description: "Description for GG allele" },
+    },
+    ACE: {
+      II: {
+        supplement: "Magnesium",
+        description:
+          "The ACE Gene tells users what level of salt sensitivity they have.  Endurance athletes commonly have to replenish sodium, but with the II allele, individuals will have to counteract sensitivities with more potassium.  In the process, users will have to increase intake of magnesium, which encourages the active transport of potassium ions across cell membranes.",
+      },
+      ID: { supplement: "Vitamin D", description: "Description for ID allele" },
+      DD: { supplement: "Vitamin D", description: "Description for DD allele" },
+    },
+    ACTN3: {
+      RR: { supplement: "Vitamin C", description: "Description for RR allele" },
+      RX: { supplement: "Magnesium", description: "Description for RX allele" },
+      XX: { supplement: "Magnesium", description: "Description for XX allele" },
+    },
+    NOS3: {
+      TT: { supplement: "Vitamin D", description: "Description for TT allele" },
+      TG: { supplement: "Vitamin C", description: "Description for TG allele" },
+      GG: { supplement: "Vitamin C", description: "Description for GG allele" },
+      G: { supplement: "Vitamin C", description: "Description for G allele" },
+    },
+  };
+
+  // Check if the gene exists in the supplement mappings
+  if (supplementMappings[gene]) {
+    // Check if the allele exists for the gene
+    if (supplementMappings[gene][allele]) {
+      // Return an object containing the recommended supplement and description
+      return supplementMappings[gene][allele];
+    } else {
+      return {
+        supplement: "No recommendation",
+        description: "No description available for this allele.",
+      };
+    }
+  } else {
+    return {
+      supplement: "No recommendation",
+      description: "No description available for this gene.",
+    };
+  }
+}
+
+// Function to select gene and update UI
+function selectGene(gene) {
+  // Update selected gene in the database
+  const selectedGeneRef = firebase.database().ref(`/user/genes/${gene}`);
+  selectedGeneRef.once("value", (snapshot) => {
+    const allele = snapshot.val(); // Get the allele for the selected gene
+    const geneName = gene;
+    const recommendedSupplement = recommendSupplement(gene, allele); // Function to recommend supplement
+
+    // Update gene information
+    document.getElementById(
+      "selected-gene"
+    ).textContent = `${geneName} - ${allele} Allele`;
+    document.getElementById("allele-description").textContent =
+      recommendedSupplement.description; // Update description
+
+    // Display recommended supplement
+    const recommendation = document.querySelector(".recommendation");
+    recommendation.innerHTML = `<h3>${recommendedSupplement.supplement}</h3>`;
+  });
+}
+
+// Function to handle click event on gene buttons
+function handleGeneButtonClick(geneButton) {
+  // Remove 'active' class from all gene buttons
+  document.querySelectorAll('.gene-buttons button').forEach(button => {
+    button.classList.remove('active');
+  });
+
+  // Add 'active' class to the clicked gene button
+  geneButton.classList.add('active');
+
+  // Get the gene name from the button's data attribute or text content
+  const geneName = geneButton.dataset.gene || geneButton.textContent.trim();
+
+  // Call the function to select the gene and update UI
+  selectGene(geneName);
+}
+
+// Attach click event listeners to gene buttons
+document.querySelectorAll('.gene-buttons button').forEach(button => {
+  button.addEventListener('click', function() {
+    handleGeneButtonClick(this);
+  });
+});

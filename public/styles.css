@@ -326,6 +326,11 @@ span {
   color: #9494fb;
 }
 
+.gene-buttons button.active {
+  background-color: #94caff;
+  color: #000000;
+}
+
 .recommendation {
   background-color: #94caff;
   color: #000000;
@@ -337,10 +342,20 @@ span {
   align-items: center;
 }
 
+.instructions {
+  text-align: left;
+  margin-bottom: 10px;
+  margin-left: 5px;
+}
+
 @media only screen and (max-width: 768px) {
   .container {
     overflow-x: hidden;
     white-space: normal; /* Prevent wrapping of supplements */
+  }
+
+  #gene-selection {
+    width: 95%; /* Adjust width for smaller screens */
   }
 
   .supplement {

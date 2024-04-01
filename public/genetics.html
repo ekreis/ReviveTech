@@ -38,8 +38,9 @@
     </header>
     <div class="container">
       <div id="gene-selection">
+        <h3 class="instructions">Select a gene:</h3>
         <div class="gene-buttons">
-          <button onclick="selectGene('SLC2A2')">SLC2A2</button>
+          <button onclick="selectGene('SLC23A2')">SLC23A2</button>
           <button onclick="selectGene('ACE')">ACE</button>
           <button onclick="selectGene('ACTN3')">ACTN3</button>
           <button onclick="selectGene('NOS3')">NOS3</button>
@@ -48,11 +49,20 @@
 
       <div id="gene-info" class="profile-section">
         <div class="detail">
-          <h2 id="selected-gene" class="detail-header">Gene - Allele</h2>
-          <p id="allele-description">Description</p>
-          <div class="recommendation"><h3>Recommended Supplement</h3></div>
+          <h2 id="selected-gene" class="detail-header"></h2>
+          <p id="allele-description"></p>
+          <br>
+          <p>Recommended supplement for your genotype:</p>
+          <div class="recommendation"><h3></h3></div>
         </div>
       </div>
     </div>
+    <script>
+      // Call the function to select a default gene when the DOM content is loaded
+      document.addEventListener("DOMContentLoaded", function () {
+        // Selecting the default gene SLC23A2
+        selectGene("SLC23A2");
+      });
+    </script>
   </body>
 </html>
