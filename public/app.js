@@ -230,4 +230,93 @@ document.addEventListener("DOMContentLoaded", function () {
       input.click();
     });
   }
+  // Get a reference to the name-header element
+  var nameHeader = document.getElementById("name-header");
+  var ageText = document.getElementById("age");
+  var sexText = document.getElementById("sex");
+
+  // Get a reference to the database node containing the user's name
+  var nameRef = firebase.database().ref("/user/profile/name");
+  var ageRef = firebase.database().ref("/user/profile/age");
+  var sexRef = firebase.database().ref("/user/profile/sex");
+
+  // Attach a listener to the database reference to fetch the user's name
+  nameRef.on("value", function (snapshot) {
+    // Get the name from the snapshot
+    var userName = snapshot.val();
+
+    // Set the text content of the name-header element to the user's name
+    if (nameHeader) {
+      nameHeader.textContent = userName || "About You"; // Display "Unknown" if name is not available
+    }
+  });
+
+  // Attach a listener to the database reference to fetch the user's age
+  ageRef.on("value", function (snapshot) {
+    // Get the age from the snapshot
+    var age = snapshot.val();
+
+    // Set the text content of the age element to the user's age
+    if (ageText) {
+      ageText.textContent = age || "Unknown"; // Display "Unknown" if name is not available
+    }
+  });
+
+  // Attach a listener to the database reference to fetch the user's sex
+  sexRef.on("value", function (snapshot) {
+    // Get the sex from the snapshot
+    var sex = snapshot.val();
+
+    // Set the text content of the sex element to the user's sex
+    if (sexText) {
+      sexText.textContent = sex || "Unknown"; // Display "Unknown" if name is not available
+    }
+  });
+});
+
+// Function to update goal value in the database
+function updateGoal(goalName) {
+  var checkbox = document.getElementById(goalName); // Get the checkbox element
+  if (checkbox) {
+    var goalValue = checkbox.checked; // Get the checkbox state
+    // Update the database with the checkbox state
+    database.ref("user/goals/" + goalName).set(goalValue);
+    recommendSupplements();
+  }
+}
+
+// Listen for changes in the goal checkbox state and update the database accordingly
+function addGoalCheckboxListener(goalName) {
+  var checkbox = document.getElementById(goalName); // Get the checkbox element
+  if (checkbox) {
+    // Listen for changes in the checkbox state
+    checkbox.addEventListener("change", function () {
+      updateGoal(goalName); // Call updateGoal function when the checkbox state changes
+    });
+  }
+}
+
+// Set the checkbox states based on the values retrieved from the database
+function setGoalCheckboxState(goalName, snapshot) {
+  var checkbox = document.getElementById(goalName);
+  if (checkbox) {
+    checkbox.checked = snapshot.val();
+  }
+}
+
+var goals = ["endurance", "energy", "immunity", "muscle", "recovery", "weight"];
+
+goals.forEach(function (goalName) {
+  var goalRef = database.ref("user/goals/" + goalName);
+  goalRef.on("value", function (snapshot) {
+    setGoalCheckboxState(goalName, snapshot);
+  });
+});
+
+// Call the function to display database values when the DOM content is loaded
+document.addEventListener("DOMContentLoaded", function () {
+  // Attach event listeners to checkboxes
+  goals.forEach(function (goalName) {
+    addGoalCheckboxListener(goalName);
+  });
 });

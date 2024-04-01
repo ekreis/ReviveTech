@@ -12,6 +12,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
     <!-- Javascript -->
     <script src="app.js"></script>
+    <script src="algorithm.js"></script>
   </head>
   <body>
     <header class="header">
@@ -40,7 +41,23 @@
         <img src="" alt="Profile Image" id="profile-image" />
         <a href="#" class="camera-btn"></a>
       </div>
-      <div>hello</div>
+      <div class="profile-section">
+        <div class="detail" >
+          <h2 class="detail-header" id="name-header"></h2>
+          <div class="detail-row"><p class="detail-body">Age:&nbsp;</p><p class="detail-body" id="age"></p></div>
+          <div class="detail-row"><p class="detail-body">Sex:&nbsp;</p><p class="detail-body" id="sex"></p></div>
+        </div>
+        <div class="detail">
+          <h2 class="detail-header">Your Goals</h2>
+          <div class="detail-row"><input type="checkbox" id="endurance" name="endurance" /><p class="detail-body">&nbsp;Endurance</p></div>
+          <div class="detail-row"><input type="checkbox" id="energy" name="energy" /><p class="detail-body">&nbsp;Energy</p></div>
+          <div class="detail-row"><input type="checkbox" id="immunity" name="immunity" /><p class="detail-body">&nbsp;Immunity</p></div>
+          <div class="detail-row"><input type="checkbox" id="muscle" name="muscle" /><p class="detail-body">&nbsp;Build Muscle</p></div>
+          <div class="detail-row"><input type="checkbox" id="recovery" name="recovery" /><p class="detail-body">&nbsp;Recovery</p></div>
+          <div class="detail-row"><input type="checkbox" id="weight" name="weight" /><p class="detail-body">&nbsp;Lose Weight</p></div>
+        </div>
+      </div>
+    </div>
     </div>
   </body>
 </html>
