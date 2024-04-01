@@ -298,6 +298,45 @@ span {
   z-index: 0; /* Set initial z-index */
 }
 
+/* Gene selection styles */
+#gene-selection {
+  margin-top: 20px; /* Add spacing */
+  text-align: center;
+  width: 50%;
+  max-width: 400px;
+}
+
+.gene-buttons {
+  display: flex;
+  justify-content: space-between; /* Distribute buttons evenly */
+}
+
+.gene-buttons button {
+  flex: 1; /* Distribute available space equally */
+  background-color: #f4f4f4;
+  color: #000000;
+  border: 2px solid #d3d3d3;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0 5px; /* Add spacing between buttons */
+}
+
+.gene-buttons button:hover {
+  color: #9494fb;
+}
+
+.recommendation {
+  background-color: #94caff;
+  color: #000000;
+  border: 2px solid #d3d3d3;
+  padding: 8px 15px;
+  border-radius: 5px;
+  margin-bottom: 0px;
+  text-align: center;
+  align-items: center;
+}
+
 @media only screen and (max-width: 768px) {
   .container {
     overflow-x: hidden;
