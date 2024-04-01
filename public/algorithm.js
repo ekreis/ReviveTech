@@ -32,6 +32,13 @@ function updateRecommendation(supplement) {
       // Increment the current count by 1
       return (currentCount || 0) + 1;
     });
+  firebase
+    .database()
+    .ref(`/user/dispense/${supplement}`)
+    .transaction((currentCount) => {
+      // Increment the current count by 1
+      return (currentCount || 0) + 1;
+    });
 }
 
 // Function to recommend supplements based on user's genetic data and goals
@@ -39,6 +46,14 @@ async function recommendSupplements() {
   try {
     // Set all recommendation counts to zero
     firebase.database().ref(`/user/recommendation`).set({
+      caffeine: 0,
+      creatine: 0,
+      magnesium: 0,
+      vitaminB6: 0,
+      vitaminC: 0,
+      vitaminD: 0,
+    });
+    firebase.database().ref(`/user/dispense`).set({
       caffeine: 0,
       creatine: 0,
       magnesium: 0,
@@ -122,7 +137,7 @@ async function recommendSupplements() {
             );
           }
         }
-      } 
+      }
       // Loop through each goal in the user's goal data
       for (const goal in userGoals) {
         if (userGoals.hasOwnProperty(goal)) {
