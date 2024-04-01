@@ -178,12 +178,11 @@ span {
   justify-content: center;
   background-color: transparent; /* Set background color to transparent */
   color: #000000; /* Black text color */
-  font-size: 1.2rem; /* Adjust font size */
-  text-transform: uppercase;
   border: none;
   outline: none;
   cursor: pointer;
   margin: 10px 0px;
+  text-transform: uppercase;
 }
 
 .play-icon {
@@ -210,6 +209,55 @@ span {
   cursor: pointer;
 }
 
+/* Profile Section Styles */
+.profile-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20px;
+  width: 50%;
+  max-width: 400px;
+}
+
+.profile-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.detail {
+  width: 100%;
+  padding: 20px;
+  border: 2px solid #d3d3d3; /* Dark border */
+  border-radius: 10px;
+  background-color: #f4f4f4; /* Light background */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow */
+  margin-bottom: 10px;
+}
+
+.detail-header {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: left;
+  margin: 10px 0px;
+}
+
+.detail-body {
+  font-size: 1rem;
+  line-height: 1.5;
+  overflow-wrap: break-word;
+  margin: 10px 0px;
+}
+
+.detail-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 /* Layer camera icon on top */
 .profile-photo {
   position: relative;
@@ -228,7 +276,6 @@ span {
   border-radius: 50%; /* Make the border circular */
   overflow: hidden; /* Hide overflowing parts of the image */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow */
-  padding: 15px; /* Add padding to the image */
   background-color: #f4f4f4;
 }
 
@@ -254,10 +301,14 @@ span {
 @media only screen and (max-width: 768px) {
   .container {
     overflow-x: hidden;
-    white-space: nowrap; /* Prevent wrapping of supplements */
+    white-space: normal; /* Prevent wrapping of supplements */
   }
 
   .supplement {
+    width: 95%; /* Adjust width for smaller screens */
+  }
+
+  .profile-section {
     width: 95%; /* Adjust width for smaller screens */
   }
 
