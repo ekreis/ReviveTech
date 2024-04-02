@@ -329,27 +329,39 @@ function recommendSupplement(gene, allele) {
       AA: {
         supplement: "Vitamin C",
         description:
-          "The ACTN3 Gene is associated with slow twitch muscle fiber type. Individuals with the AA allele with have more muscle strength than those with CT/CC. However it is still recommended for  individuals to have increased levels of carbohydrate intake.",
+          "The SLC23A2 gene encodes a Vitamin C transporter, and around 28% of the population carries a variant that reduces the absorption and tissue accumulation of Vitamin C. This variant may lead to increased risk of Vitamin C deficiency if dietary intake is not sufficient, therefore Vitamin C is highly recommended individuals of all genotypes.",
       },
-      AG: { supplement: "Vitamin C", description: "Description for AG allele" },
-      GG: { supplement: "Vitamin C", description: "Description for GG allele" },
+      AG: {
+        supplement: "Vitamin C",
+        description:
+          "The SLC23A2 gene encodes a Vitamin C transporter, and around 28% of the population carries a variant that reduces the absorption and tissue accumulation of Vitamin C. This variant may lead to increased risk of Vitamin C deficiency if dietary intake is not sufficient, therefore Vitamin C is highly recommended individuals of all genotypes.",
+      },
+      GG: {
+        supplement: "Vitamin C",
+        description:
+          "The SLC23A2 gene encodes a Vitamin C transporter, and around 28% of the population carries a variant that reduces the absorption and tissue accumulation of Vitamin C. This variant may lead to increased risk of Vitamin C deficiency if dietary intake is not sufficient, therefore Vitamin C is highly recommended individuals of all genotypes.",
+      },
     },
     ACE: {
       II: {
         supplement: "Magnesium",
         description:
-          "The ACE Gene tells users what level of salt sensitivity they have.  Endurance athletes commonly have to replenish sodium, but with the II allele, individuals will have to counteract sensitivities with more potassium.  In the process, users will have to increase intake of magnesium, which encourages the active transport of potassium ions across cell membranes.",
+          "The ACE Gene tells users what level of salt sensitivity they have. Endurance athletes commonly have to replenish sodium, but with the II allele, individuals will have to counteract sensitivities with more potassium. In the process, users will have to increase intake of magnesium, which encourages the active transport of potassium ions across cell membranes.",
       },
       ID: { supplement: "Vitamin D", description: "Description for ID allele" },
       DD: { supplement: "Vitamin D", description: "Description for DD allele" },
     },
     ACTN3: {
-      RR: { supplement: "Vitamin C", description: "Description for RR allele" },
+      RR: {
+        supplement: "Vitamin D",
+        description:
+          "The ACTN3 gene, or alpha-actinin-3, plays a crucial role in muscle function and is associated with fast-twitch muscle fibers. These muscle fibers are responsible for rapid but powerful contractions.  This gene is considered essential for activities requiring strength, speed, and power, such as sprinting and weightlifting.  Individuals with the RR allele will have faster-twitch muscle fibers that allow for quick movements when needed.",
+      },
       RX: { supplement: "Magnesium", description: "Description for RX allele" },
       XX: { supplement: "Magnesium", description: "Description for XX allele" },
     },
     NOS3: {
-      TT: { supplement: "Vitamin D", description: "Description for TT allele" },
+      TT: { supplement: "Vitamin D", description: "The NOS3 gene, also known as endothelial nitric oxide synthase (eNOS), plays a crucial role in blood vessel dilation and overall cardiovascular function. One of the common variations of the NOS3 gene is the TT allele, which is associated with increased production of nitric oxide in the body. The TT allele of the NOS3 gene helps improve performance by supporting optimal blood flow and oxygen delivery to muscles.  As a result, this delays the onset of fatigue and improves overall exercise capacity." },
       TG: { supplement: "Vitamin C", description: "Description for TG allele" },
       GG: { supplement: "Vitamin C", description: "Description for GG allele" },
       G: { supplement: "Vitamin C", description: "Description for G allele" },
@@ -401,12 +413,12 @@ function selectGene(gene) {
 // Function to handle click event on gene buttons
 function handleGeneButtonClick(geneButton) {
   // Remove 'active' class from all gene buttons
-  document.querySelectorAll('.gene-buttons button').forEach(button => {
-    button.classList.remove('active');
+  document.querySelectorAll(".gene-buttons button").forEach((button) => {
+    button.classList.remove("active");
   });
 
   // Add 'active' class to the clicked gene button
-  geneButton.classList.add('active');
+  geneButton.classList.add("active");
 
   // Get the gene name from the button's data attribute or text content
   const geneName = geneButton.dataset.gene || geneButton.textContent.trim();
@@ -416,8 +428,8 @@ function handleGeneButtonClick(geneButton) {
 }
 
 // Attach click event listeners to gene buttons
-document.querySelectorAll('.gene-buttons button').forEach(button => {
-  button.addEventListener('click', function() {
+document.querySelectorAll(".gene-buttons button").forEach((button) => {
+  button.addEventListener("click", function () {
     handleGeneButtonClick(this);
   });
 });
