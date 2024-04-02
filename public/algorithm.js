@@ -81,7 +81,7 @@ async function recommendSupplements() {
         DD: "vitaminD",
       },
       ACTN3: {
-        RR: "vitaminC",
+        RR: "vitaminD",
         RX: "magnesium",
         XX: "magnesium",
       },
