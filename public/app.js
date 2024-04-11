@@ -361,7 +361,11 @@ function recommendSupplement(gene, allele) {
       XX: { supplement: "Magnesium", description: "Description for XX allele" },
     },
     NOS3: {
-      TT: { supplement: "Vitamin D", description: "The NOS3 gene, also known as endothelial nitric oxide synthase (eNOS), plays a crucial role in blood vessel dilation and overall cardiovascular function. One of the common variations of the NOS3 gene is the TT allele, which is associated with increased production of nitric oxide in the body. The TT allele of the NOS3 gene helps improve performance by supporting optimal blood flow and oxygen delivery to muscles.  As a result, this delays the onset of fatigue and improves overall exercise capacity." },
+      TT: {
+        supplement: "Vitamin D",
+        description:
+          "The NOS3 gene, also known as endothelial nitric oxide synthase (eNOS), plays a crucial role in blood vessel dilation and overall cardiovascular function. One of the common variations of the NOS3 gene is the TT allele, which is associated with increased production of nitric oxide in the body. The TT allele of the NOS3 gene helps improve performance by supporting optimal blood flow and oxygen delivery to muscles.  As a result, this delays the onset of fatigue and improves overall exercise capacity.",
+      },
       TG: { supplement: "Vitamin C", description: "Description for TG allele" },
       GG: { supplement: "Vitamin C", description: "Description for GG allele" },
       G: { supplement: "Vitamin C", description: "Description for G allele" },
@@ -432,4 +436,30 @@ document.querySelectorAll(".gene-buttons button").forEach((button) => {
   button.addEventListener("click", function () {
     handleGeneButtonClick(this);
   });
+});
+
+// Function to dispense supplements
+document.addEventListener("DOMContentLoaded", function () {
+  function dispenseSupplements() {
+    // Code to trigger the dispensing of supplements
+    console.log("Dispensing supplements...");
+    database
+      .ref("/dispense")
+      .set(true)
+      .then(() => {
+        console.log("Dispense set to true in the database");
+      })
+      .catch((error) => {
+        console.error("Error setting dispense value:", error);
+      });
+  }
+
+  var dispenseBtn = document.querySelector(".dispense-btn");
+  if (dispenseBtn) {
+    dispenseBtn.addEventListener("click", function () {
+      dispenseSupplements();
+    });
+  } else {
+    console.warn("Dispense button not found in the DOM.");
+  }
 });
