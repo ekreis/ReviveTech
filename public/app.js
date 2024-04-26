@@ -19,6 +19,28 @@ var recommendationRef = database.ref("user/recommendation");
 // Reference to dispense path
 var dispenseRef = database.ref("user/dispense");
 
+// Function to increase supplement amount
+function increaseSupplement(supplementName) {
+  var inputField = document.getElementById(supplementName); // Get the input field element
+  if (inputField) {
+    var supplementValue = parseInt(inputField.value) || 0; // Get the current value
+    inputField.value = supplementValue + 1; // Increment the value
+    updateSupplement(supplementName); // Update the database
+  }
+}
+
+// Function to decrease supplement amount
+function decreaseSupplement(supplementName) {
+  var inputField = document.getElementById(supplementName); // Get the input field element
+  if (inputField) {
+    var supplementValue = parseInt(inputField.value) || 0; // Get the current value
+    if (supplementValue > 0) {
+      inputField.value = supplementValue - 1; // Decrement the value if greater than 0
+      updateSupplement(supplementName); // Update the database
+    }
+  }
+}
+
 // Function to update supplement value in the database
 function updateSupplement(supplementName) {
   var inputField = document.getElementById(supplementName); // Get the input field element
@@ -125,6 +147,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (window.location.pathname === "/index.html") {
     var resetBtn = document.querySelector(".reset-btn");
     if (resetBtn) {
+      console.log("Reset button found in the DOM."); // Add this line for debugging
       resetBtn.addEventListener("click", function () {
         resetValues();
       });
@@ -136,6 +159,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Reset function
 function resetValues() {
+  console.log("Reset button clicked"); // Add this line for debugging
   // Get the recommendation data
   recommendationRef.once("value", function (snapshot) {
     var recommendationData = snapshot.val();

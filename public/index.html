@@ -10,7 +10,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
-    <!-- Javascript -->
+    <!-- Reference to your separate app.js file -->
     <script src="app.js"></script>
   </head>
   <body>
@@ -40,29 +40,59 @@
         <span class="play-icon"></span>
         <h1>Dispense</h1>
       </button>
+      <!-- Structure for the caffeine supplement -->
       <div class="supplement">
         <label for="caffeine">Caffeine</label>
-        <input type="number" id="caffeine" min="0" name="caffeine" />
+        <div>
+          <button onclick="decreaseSupplement('caffeine')">-</button>
+          <input type="text" id="caffeine" />
+          <button onclick="increaseSupplement('caffeine')">+</button>
+        </div>
       </div>
+      <!-- Structure for the creatine supplement -->
       <div class="supplement">
         <label for="creatine">Creatine</label>
-        <input type="number" id="creatine" min="0" name="creatine" />
+        <div>
+          <button onclick="decreaseSupplement('creatine')">-</button>
+          <input type="text" id="creatine" />
+          <button onclick="increaseSupplement('creatine')">+</button>
+        </div>
       </div>
+      <!-- Structure for the magnesium supplement -->
       <div class="supplement">
         <label for="magnesium">Magnesium</label>
-        <input type="number" id="magnesium" min="0" name="magnesium" />
+        <div>
+          <button onclick="decreaseSupplement('magnesium')">-</button>
+          <input type="text" id="magnesium" />
+          <button onclick="increaseSupplement('magnesium')">+</button>
+        </div>
       </div>
+      <!-- Structure for the VitaminB6 supplement -->
       <div class="supplement">
         <label for="vitaminB6">Vitamin B6</label>
-        <input type="number" id="vitaminB6" min="0" name="vitaminB6" />
+        <div>
+          <button onclick="decreaseSupplement('vitaminB6')">-</button>
+          <input type="text" id="vitaminB6" />
+          <button onclick="increaseSupplement('vitaminB6')">+</button>
+        </div>
       </div>
+      <!-- Structure for the VitaminC supplement -->
       <div class="supplement">
         <label for="vitaminC">Vitamin C</label>
-        <input type="number" id="vitaminC" min="0" name="vitaminC" />
+        <div>
+          <button onclick="decreaseSupplement('vitaminC')">-</button>
+          <input type="text" id="vitaminC" />
+          <button onclick="increaseSupplement('vitaminC')">+</button>
+        </div>
       </div>
+      <!-- Structure for the VitaminD supplement -->
       <div class="supplement">
         <label for="vitaminD">Vitamin D</label>
-        <input type="number" id="vitaminD" min="0" name="vitaminD" />
+        <div>
+          <button onclick="decreaseSupplement('vitaminD')">-</button>
+          <input type="text" id="vitaminD" />
+          <button onclick="increaseSupplement('vitaminD')">+</button>
+        </div>
       </div>
       <button class="reset-btn">Reset to Recommendation</button>
     </div>

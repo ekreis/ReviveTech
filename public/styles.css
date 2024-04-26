@@ -1,4 +1,5 @@
 /* styles.css */
+
 /* css reset */
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,500;1,400&display=swap");
 
@@ -125,32 +126,30 @@ header {
 }
 
 .supplement label {
-  margin-right: auto; /* Push the label to the left edge */
+  margin-right: 10px; /* Adjust right margin of label */
 }
 
-.supplement input[type="checkbox"] {
-  margin-left: auto; /* Push the checkbox to the right edge */
+.supplement input[type="text"] {
+  height: 30px;
+  width: 50px;
+  text-align: center; /* Center the supplement counts */
 }
 
-.database-values {
-  text-align: center;
-}
-
-h1 {
-  color: #000000; /* Black */
-  margin-bottom: 20px;
-  margin-top: 0px;
+.supplement button {
+  width: 30px; /* Increase width to make them squares */
+  height: 30px;
+  background-color: #b2bfff; /* Set color to #b2bfff */
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #000000;
+  cursor: pointer;
 }
 
 p {
   color: #000000; /* Black */
   margin-bottom: 10px;
   text-align: left;
-}
-
-span {
-  font-weight: bold;
-  color: #000000; /* Black */
 }
 
 /* Add spacing between label, input, and button */
@@ -170,7 +169,6 @@ span {
   margin: 0 5px; /* Adjust horizontal margin between items */
 }
 
-/* Dispense button styles */
 .dispense-btn {
   display: flex;
   flex-direction: column;
@@ -258,7 +256,6 @@ span {
   align-items: center;
 }
 
-/* Layer camera icon on top */
 .profile-photo {
   position: relative;
   width: 150px; /* Adjust the width as needed */
@@ -266,7 +263,6 @@ span {
   z-index: 0; /* Ensure profile photo is below nav menu */
 }
 
-/* Ensure profile image is always visible */
 .profile-photo img {
   display: block; /* Ensure the image is displayed as a block element */
   width: 100%; /* Make the image fill the width of its container */
@@ -279,7 +275,6 @@ span {
   background-color: #f4f4f4;
 }
 
-/* Layer camera icon on top */
 .camera-btn {
   position: absolute;
   bottom: 0;
@@ -298,7 +293,6 @@ span {
   z-index: 0; /* Set initial z-index */
 }
 
-/* Gene selection styles */
 #gene-selection {
   margin-top: 20px; /* Add spacing */
   text-align: center;
